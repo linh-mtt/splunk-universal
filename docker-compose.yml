@@ -1,0 +1,34 @@
+services:
+  splunk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - SPLUNK_VERSION=9.4.10
+    image: splunk9-rosetta
+    platform: linux/amd64
+    container_name: splunk
+    environment:
+      - SPLUNK_PASSWORD=SplunkPassw0rd
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com
+    ports:
+      - 8008:8000
+      - 8089:8089
+
+  splunk1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # args:
+      #   - SPLUNK_VERSION=10.2.2
+    image: splunk10-rosetta
+    platform: linux/amd64
+    container_name: splunk1
+    environment:
+      - SPLUNK_PASSWORD=SplunkPassw0rd
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com
+    ports:
+      - 8088:8000
+      - 8090:8089
